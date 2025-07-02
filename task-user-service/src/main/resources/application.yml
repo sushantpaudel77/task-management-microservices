@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: task-user-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/task_user_service?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    initialization-mode: always
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+
+  output:
+    ansi:
+      enabled: ALWAYS
+
+server:
+  port: 5001
