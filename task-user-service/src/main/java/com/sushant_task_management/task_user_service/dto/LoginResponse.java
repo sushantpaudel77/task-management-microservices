@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthResponse {
-    private String jwt;
-    private String message;
+public class LoginResponse {
     private boolean status;
+    private String message;
+    private String jwt;
     private String tokenType;
     private Long expiresIn;
     private UserInfo userInfo;
