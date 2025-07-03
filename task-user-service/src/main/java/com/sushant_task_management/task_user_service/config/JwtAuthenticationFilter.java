@@ -1,5 +1,9 @@
 package com.sushant_task_management.task_user_service.config;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -10,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -53,9 +58,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String extractTokenFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader(JwtConstants.JWT_HEADER);
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtConstants.TOKEN_PREFIX)) {
-            return bearerToken.substring(JwtConstants.TOKEN_PREFIX.length());
+        String bearerToken = request.getHeader(JWTConstant.JWT_HEADER);
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JWTConstant.TOKEN_PREFIX)) {
+            return bearerToken.substring(JWTConstant.TOKEN_PREFIX.length());
         }
         return null;
     }
